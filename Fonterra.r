@@ -135,8 +135,8 @@ Fonterramatrix
 Units 14306 22356 26180 28762 26939 31317 32124 43651 50664 57190 59209 57715      
 
 # create svg & a small .png format chart of the market value of free emission units
-svg(filename ="Fonterra-2010-2021-allocations_720-540font11.svg", width = 8, height = 6, pointsize = 11, onefile = FALSE, family = "sans", bg = "white")
-#png("Fonterra-2010-2021-560by420F12.png", bg="white", width=560, height=420,pointsize = 12)
+#svg(filename ="Fonterra-2010-2021-allocations_720-540font11.svg", width = 8, height = 6, pointsize = 11, onefile = FALSE, family = "sans", bg = "white")
+png("Fonterra-2010-2021-560by420F12.png", bg="white", width=560, height=420,pointsize = 12)
 par(mar=c(4.4, 4.4, 4.4, 2)+0.1)
 barplot(Fonterramatrix/10^3,col="#E2A100",las=1) # color is Tangerine! 
 title(ylab="Emission units (thousands)")
@@ -266,3 +266,8 @@ mtext(side=1,line=2.5,cex=0.9,expression(paste("Data: https://www.epa.govt.nz/in
 mtext(side=4,cex=0.75, line=0.05,R.version.string)
 mtext(side=2,line=-1.5,cex=1,expression(paste("Emission units (thousands)")))
 dev.off()
+
+# Create a .csv formatted data file
+write.csv(Fonterraunits, file = "Fonterraunits.csv", row.names = FALSE)
+# read csv file back in if needed
+#Fonterraunits <- read.csv("Fonterraunits.csv") 
