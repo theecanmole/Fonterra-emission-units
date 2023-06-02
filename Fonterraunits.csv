@@ -1,25 +1,25 @@
-"Activity","Applicant","Year","Allocation","Value"
-"Lactose","Fonterra Ltd",2010,13418,235888.44
-"Whey powder","Fonterra Ltd",2010,888,15611.04
-"Lactose","Fonterra Ltd",2011,21290,422393.6
-"Whey powder","Fonterra Ltd",2011,1066,21149.44
-"Lactose","Fonterra Ltd",2012,25210,157058.3
-"Whey powder","Fonterra Ltd",2012,970,6043.1
-"Lactose","Fonterra Ltd",2013,28140,54591.6
-"Whey powder","Fonterra Ltd",2013,622,1206.68
-"Lactose","Fonterra Ltd",2014,26109,106524.72
-"Whey powder","Fonterra Ltd",2014,830,3386.4
-"Lactose","Fonterra Ltd",2015,29515,157610.1
-"Whey powder","Fonterra Ltd",2015,1802,9622.68
-"Lactose","Fonterra Limited",2016,29633,433530.79
-"Whey powder","Fonterra Limited",2016,2491,36443.33
-"Lactose","Fonterra Limited",2017,39574,671175.04
-"Whey powder","Fonterra Limited",2017,4077,69145.92
-"Lactose","Fonterra Limited",2018,44739,952045.92
-"Whey powder","Fonterra Limited",2018,5925,126084
-"Lactose","Fonterra Limited",2019,51787,1309693.23
-"Whey powder","Fonterra Limited",2019,5403,136641.87
-"Lactose","Fonterra Limited",2020,53229,1322208.36
-"Whey powder","Fonterra Limited",2020,5980,148543.2
-"Lactose","Fonterra Limited",2021,51403,1909107.42
-"Whey powder","Fonterra Limited",2021,6312,234427.68
+"Activity","Applicant","Year","Allocation","MeanMayprice","Value"
+"Lactose","Fonterra Ltd",2010,13418,17.58,236156.8
+"Whey powder","Fonterra Ltd",2010,888,17.58,15628.8
+"Lactose","Fonterra Ltd",2011,21290,19.84,374704
+"Whey powder","Fonterra Ltd",2011,1066,19.84,18761.6
+"Lactose","Fonterra Ltd",2012,25210,6.23,157058.3
+"Whey powder","Fonterra Ltd",2012,970,6.23,6043.1
+"Lactose","Fonterra Ltd",2013,28140,1.94,54591.6
+"Whey powder","Fonterra Ltd",2013,622,1.94,1206.68
+"Lactose","Fonterra Ltd",2014,26109,4.08,106524.72
+"Whey powder","Fonterra Ltd",2014,830,4.08,3386.4
+"Lactose","Fonterra Ltd",2015,29515,5.34,157610.1
+"Whey powder","Fonterra Ltd",2015,1802,5.34,9622.68
+"Lactose","Fonterra Limited",2016,29633,14.63,433530.79
+"Whey powder","Fonterra Limited",2016,2491,14.63,36443.33
+"Lactose","Fonterra Limited",2017,39574,16.96,671175.04
+"Whey powder","Fonterra Limited",2017,4077,16.96,69145.92
+"Lactose","Fonterra Limited",2018,44739,21.28,952045.92
+"Whey powder","Fonterra Limited",2018,5925,21.28,126084
+"Lactose","Fonterra Limited",2019,51787,25.29,1309693.23
+"Whey powder","Fonterra Limited",2019,5403,25.29,136641.87
+"Lactose","Fonterra Limited",2020,53229,24.84,1322208.36
+"Whey powder","Fonterra Limited",2020,5980,24.84,148543.2
+"Lactose","Fonterra Limited",2021,51403,37.14,1909107.42
+"Whey powder","Fonterra Limited",2021,6312,37.14,234427.68

@@ -1,4 +1,5 @@
-Fonterra 
+Fonterra free emission units received under Industrial Allocation rules
+
 # link @ 11/01/2023 
 https://www.epa.govt.nz/assets/Uploads/Documents/Emissions-Trading-Scheme/Reports/Industrial-Allocations/Industrial-Allocations-Final-Decisions_2022.xlsx
 
@@ -29,10 +30,10 @@ Allocations <- read_excel("Industrial-Allocations-Final-Decisions_2022.xlsx", sh
 # check dataframe variables
 str(Allocations) 
 tibble [1,286 × 4] (S3: tbl_df/tbl/data.frame)
- $ Activity        : chr [1:1207] "Aluminium smelting" "Burnt lime" "Burnt lime" "Burnt lime" ...
- $ Applicant’s name: chr [1:1207] "New Zealand Aluminium Smelters Limited" "Graymont (NZ) Limited" "Holcim (New Zealand) Limited" "Perry Resources (2008) Ltd" ...
- $ Year            : num [1:1207] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
- $ Final Allocation: num [1:1207] 210421 47144 3653 4712 948 ...
+ $ Activity        : chr [1:1286] "Aluminium smelting" "Burnt lime" "Burnt lime" "Burnt lime" ...
+ $ Applicant’s name: chr [1:1286] "New Zealand Aluminium Smelters Limited" "Graymont (NZ) Limited" "Holcim (New Zealand) Limited" "Perry Resources (2008) Ltd" ...
+ $ Year            : num [1:1286] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
+ $ Final Allocation: num [1:1286] 210421 47144 3653 4712 948 ...
 
 # revise and shorten column names
 colnames(Allocations) <- c("Activity", "Applicant", "Year", "Allocation") 
@@ -68,47 +69,84 @@ tibble [141 × 4] (S3: tbl_df/tbl/data.frame)
  $ Year      : num [1:141] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
  $ Allocation: num [1:141] 210421 47144 3653 4712 948 ...
  
-# Each year, usually in May, the EPA makes a 'provisional' allocation of emssion units to selected industries. see https://www.epa.govt.nz/industry-areas/emissions-trading-scheme/industrial-allocations/ I want to estimate the market value of free allocation of units. I understand that the deadline for a provisional allocation is 30 April of each year so I assume the transfer of the allocation to NZ Steel is made in May of each year. There is an online 'open data' Github repository of New Zealand Unit (NZU) prices going back to May 2010. https://github.com/theecanmole/nzu
+# Each year, usually in May, the EPA makes a closing adjustment of previous years allocation and a 'provisional' allocation of current emission units to selected industries. see https://www.epa.govt.nz/industry-areas/emissions-trading-scheme/industrial-allocations/ I want to estimate the market value of the free allocation of units. I understand that the deadline for a provisional allocation is 30 April of each year so I assume the transfer of the combined allocation to NZ Steel is made in May of each year. There is an online 'open data' Github repository of New Zealand Unit (NZU) prices going back to May 2010. https://github.com/theecanmole/nzu
 # The NZU repository has it's own citation and DOI: Theecanmole. (2016). New Zealand emission unit (NZU) monthly prices 2010 to 2016: V1.0.01 [Data set]. Zenodo. http://doi.org/10.5281/zenodo.221328
-# I will add a NZU market price value at the May average price from 2010 to 2021
-nzu2010[["Value"]] <- nzu2010[["Allocation"]]*17.58
-nzu2011[["Value"]] <- nzu2011[["Allocation"]]*19.84
-nzu2012[["Value"]] <- nzu2012[["Allocation"]]*6.23
-nzu2013[["Value"]] <- nzu2013[["Allocation"]]*1.94
-nzu2014[["Value"]] <- nzu2014[["Allocation"]]*4.08
-nzu2015[["Value"]] <- nzu2015[["Allocation"]]*5.34
-nzu2016[["Value"]] <- nzu2016[["Allocation"]]*14.63
-nzu2017[["Value"]] <- nzu2017[["Allocation"]]*16.96
-nzu2018[["Value"]] <- nzu2018[["Allocation"]]*21.28
-nzu2019[["Value"]] <- nzu2019[["Allocation"]]*25.29 
-nzu2020[["Value"]] <- nzu2020[["Allocation"]]*24.84
-nzu2021[["Value"]] <- nzu2021[["Allocation"]]*37.14
-# add the average May spot prices
-# Mayprice <-c(17.58, 19.84,6.23,1.94,4.08,5.34,  14.63, 16.96 , 21.28 , 25.29 , 24.84 ,37.14)
+# create a vector of the average May spot prices from the NZU price repository
+# mean May price 17.58, 19.84,6.23,1.94,4.08,5.34, 14.63, 16.96 , 21.28 , 25.29 , 24.84 ,37.14)
+# add May price to each years data
+nzu2010[["MeanMayprice"]] <- 17.58
+str(nzu2010) 
+tibble [141 × 5] (S3: tbl_df/tbl/data.frame)
+ $ Activity    : chr [1:141] "Aluminium smelting" "Burnt lime" "Burnt lime" "Burnt lime" ...
+ $ Applicant   : chr [1:141] "New Zealand Aluminium Smelters Limited" "Graymont (NZ) Limited" "Holcim (New Zealand) Limited" "Perry Resources (2008) Ltd" ...
+ $ Year        : num [1:141] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
+ $ Allocation  : num [1:141] 210421 47144 3653 4712 948 ...
+ $ MeanMayprice: num [1:141] 17.6 17.6 17.6 17.6 17.6 ...
+# add a NZU market price value at the May average price from 2010 to 2021
+nzu2010[["MeanMayprice"]] <- 17.58
+nzu2010[["Value"]] <- nzu2010[["Allocation"]] * 17.6
+nzu2010[["Value"]]
 
-# combine all the year data together into 1 dataframe - I use rbind as all the column names are consistent
+# add mean May price and value
+nzu2011[["MeanMayprice"]] <- 19.84
+nzu2011[["Value"]] <- nzu2011[["Allocation"]] * 17.6
+nzu2012[["MeanMayprice"]] <-6.23
+nzu2012[["Value"]] <- nzu2012[["Allocation"]]* 6.23
+nzu2013[["MeanMayprice"]] <- 1.94
+nzu2013[["Value"]] <- nzu2013[["Allocation"]]* 1.94
+nzu2014[["MeanMayprice"]] <- 4.08
+nzu2014[["Value"]] <- nzu2014[["Allocation"]]* 4.08
+nzu2015[["MeanMayprice"]] <- 5.34
+nzu2015[["Value"]] <- nzu2015[["Allocation"]]* 5.34
+nzu2016[["MeanMayprice"]] <- 14.63
+nzu2016[["Value"]] <- nzu2016[["Allocation"]]* 14.63
+nzu2017[["MeanMayprice"]] <- 16.96
+nzu2017[["Value"]] <- nzu2017[["Allocation"]]* 16.96
+nzu2018[["MeanMayprice"]] <- 21.28
+nzu2018[["Value"]] <- nzu2018[["Allocation"]]* 21.28
+nzu2019[["MeanMayprice"]] <- 25.29 
+nzu2019[["Value"]] <- nzu2019[["Allocation"]]* 25.29
+nzu2020[["MeanMayprice"]] <- 24.84
+nzu2020[["Value"]] <- nzu2020[["Allocation"]]* 24.84
+nzu2021[["MeanMayprice"]] <- 37.14
+nzu2021[["Value"]] <- nzu2021[["Allocation"]]* 37.14
+
+# combine all the year dataframes together into 1 dataframe - I use rbind as all the column names are consistent
 Allocations <- rbind(nzu2010,nzu2011,nzu2012,nzu2013,nzu2014,nzu2015,nzu2016,nzu2017,nzu2018,nzu2019,nzu2020,nzu2021)
 
 # check the new dataframe
 str(Allocations)
-tibble [1,286 × 5] (S3: tbl_df/tbl/data.frame)
- $ Activity  : chr [1:1286] "Aluminium smelting" "Burnt lime" "Burnt lime" "Burnt lime" ...
- $ Applicant : chr [1:1286] "New Zealand Aluminium Smelters Limited" "Graymont (NZ) Limited" "Holcim (New Zealand) Limited" "Perry Resources (2008) Ltd" ...
- $ Year      : num [1:1286] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
- $ Allocation: num [1:1286] 210421 47144 3653 4712 948 ...
- $ Value     : num [1:1286] 3699201 828792 64220 82837 16666 ...
+tibble [1,286 × 6] (S3: tbl_df/tbl/data.frame)
+ $ Activity    : chr [1:1286] "Aluminium smelting" "Burnt lime" "Burnt lime" "Burnt lime" ...
+ $ Applicant   : chr [1:1286] "New Zealand Aluminium Smelters Limited" "Graymont (NZ) Limited" "Holcim (New Zealand) Limited" "Perry Resources (2008) Ltd" ...
+ $ Year        : num [1:1286] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
+ $ Allocation  : num [1:1286] 210421 47144 3653 4712 948 ...
+ $ MeanMayprice: num [1:1286] 17.6 17.6 17.6 17.6 17.6 ...
+ $ Value       : num [1:1286] 3703410 829734 64293 82931 16685 ... 
+# how many units given under Industrial Allocation?      61,594,972 62 million
+sum(Allocations[["Allocation"]]) 
+[1] 61594972
+# what is total value of Industrial allocation at mean May price?  [1] 1,112,044,883  1.1 billion
+sum(Allocations[["Value"]])  
+[1] 1112044883 
+# Create a .csv formatted data file
+write.csv(Allocations, file = "Allocations.csv", row.names = FALSE)
 
+
+# select Fonterra industrial allocations
 FonterraLtdunits <- filter(Allocations, Applicant =="Fonterra Ltd")
 FonterraLimitedunits <- filter(Allocations, Applicant =="Fonterra Limited")
 Fonterraunits <- rbind(FonterraLtdunits,FonterraLimitedunits) 
+# look at the dataframe
 str(Fonterraunits) 
-'data.frame':	24 obs. of  5 variables:
- $ Activity  : chr  "Lactose" "Whey powder" "Lactose" "Whey powder" ...
- $ Applicant : chr  "Fonterra Ltd" "Fonterra Ltd" "Fonterra Ltd" "Fonterra Ltd" ...
- $ Year      : int  2010 2010 2011 2011 2012 2012 2013 2013 2014 2014 ...
- $ Allocation: int  13418 888 21290 1066 25210 970 28140 622 26109 830 ...
- $ Value     : num  235888 15611 422394 21149 157058 ... 
- 
+tibble [24 × 6] (S3: tbl_df/tbl/data.frame)
+ $ Activity    : chr [1:24] "Lactose" "Whey powder" "Lactose" "Whey powder" ...
+ $ Applicant   : chr [1:24] "Fonterra Ltd" "Fonterra Ltd" "Fonterra Ltd" "Fonterra Ltd" ...
+ $ Year        : num [1:24] 2010 2010 2011 2011 2012 ...
+ $ Allocation  : num [1:24] 13418 888 21290 1066 25210 ...
+ $ MeanMayprice: num [1:24] 17.58 17.58 19.84 19.84 6.23 ...
+ $ Value       : num [1:24] 236157 15629 374704 18762 157058 ... 
+
 # How many emission units p.a ?
 Fonterraunitsannualno <- aggregate(Allocation ~ Year, Fonterraunits, sum) 
 Fonterraunitsannualno 
@@ -147,11 +185,11 @@ mtext(side=1,line=2.5,cex=0.9,expression(paste("Data: https://www.epa.govt.nz/in
 mtext(side=4,cex=0.75, line=0.05,R.version.string)
 dev.off() 
 
-
-# What was the value of the mission units p.a ?
+# What was the value of the mission units p.a ?  $ 8.5 million!!!
 Fonterraunitsannualvalue <- aggregate(Value ~ Year, Fonterraunits, sum)
 sum(Fonterraunitsannualvalue[["Value"]])
-[1] 8540133 $ 8.5 million!!!
+[1] 8490342 
+
 Fonterraunitsannualvalue
   Year      Value
 1  2010  251499.48
@@ -169,8 +207,7 @@ Fonterraunitsannualvalue
 
 # create a matrix to draw barplots with
 Fonterradatamatrix <- matrix(c( Fonterraunitsannualvalue[["Value"]]/10^6), nrow = 1, ncol=12, byrow=TRUE, dimnames = list(c("Market Value"), c("2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021")))
-Fonterradatamatrix 
-> Fonterradatamatrix 
+Fonterradatamatrix  
                   2010     2011      2012       2013      2014      2015
 Market Value 0.2514995 0.443543 0.1631014 0.05579828 0.1099111 0.1672328
                   2016     2017    2018     2019     2020     2021

@@ -8,9 +8,9 @@ Fonterra chief operating officer Fraser Whineray told Morning Report today that 
 
 At the moment, for each tonne of greenhouse gases the company must pay into the government's Emissions Trading Scheme, but Whineray said he would like to see more of that be given back to Fonterra to help it introduce more clean alternative energy sources.
 
-"Our total off-farm emissions in New Zealand at the moment is about 1.5 - 1.6 million tonnes [per year], and so you times that by the carbon price, and that's roughly the cost of surrendering carbon for our emissions in New Zealand each year.
+> "Our total off-farm emissions in New Zealand at the moment is about 1.5 - 1.6 million tonnes [per year], and so you times that by the carbon price, and that's roughly the cost of surrendering carbon for our emissions in New Zealand each year.
 
-"The ETS is supposed to recycle funds back into decarbonisation. And if we're spending more than $100m a year on carbon credits, getting a little bit of that back to help pay for the actual projects - some of which we've got under way and some much larger ones in front of us, that sounds like a pretty reasonable starting point."
+> "The ETS is supposed to recycle funds back into decarbonisation. And if we're spending more than $100m a year on carbon credits, getting a little bit of that back to help pay for the actual projects - some of which we've got under way and some much larger ones in front of us, that sounds like a pretty reasonable starting point."
 
 But Fonterra has been paid and continues to be paid to increase their coal thermal emissions under the 'Industrial Allocation' rules of the crazy emissions trading scheme.
 
